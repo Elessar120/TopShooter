@@ -1,6 +1,6 @@
 using UnityEngine;
 
-    public class SecondWeaponModel : MonoBehaviour
+    public class SecondWeaponModel : WeaponModel
     {
         
     }

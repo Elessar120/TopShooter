@@ -16,7 +16,7 @@ public class Bullet : Element
     public void Activate()
     {
         gameObject.SetActive(true);
-        rigidbody2D.AddForceY(TopShooterApplication.topShooterModel.bulletModel.speed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        rigidbody2D.AddForce(new Vector2(0 ,TopShooterApplication.topShooterModel.bulletModel.speed * Time.fixedDeltaTime), ForceMode2D.Impulse);
 
     }
 }

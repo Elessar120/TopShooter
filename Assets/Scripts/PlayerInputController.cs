@@ -16,6 +16,16 @@ public class PlayerInputController : Element
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TopShooterApplication.topShooterController.weaponController.Fire();
+            Debug.Log("Space");
+               
+        }
+    }
+
     private void FixedUpdate()
     {
         // todo: add movement controller
@@ -30,10 +40,6 @@ public class PlayerInputController : Element
 
             rigidbody2D.MovePosition(desiredPosition);
             
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                TopShooterApplication.topShooterController.weaponController.Fire();
-               
-            }
+          
     }
 }

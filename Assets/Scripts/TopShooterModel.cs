@@ -9,12 +9,13 @@ using UnityEngine;
         public BulletPool bulletPool;
         public Transform bulletSpawnPoint;
         public BulletModel bulletModel;
+        public WeaponModel weaponModel;
 
         private void Start()
         {
             if (bulletPool == null)
             {
-                bulletPool = FindFirstObjectByType<BulletPool>();
+                bulletPool = FindObjectOfType<BulletPool>();
             }
         }
     }

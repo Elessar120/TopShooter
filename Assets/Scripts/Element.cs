@@ -8,7 +8,7 @@ using UnityEngine;
             {
                 if (_topShooterApplication == null)
                 {
-                    _topShooterApplication = FindFirstObjectByType<TopShooterApplication>();
+                    _topShooterApplication = FindObjectOfType<TopShooterApplication>();
                 }
                 return _topShooterApplication;
             }
