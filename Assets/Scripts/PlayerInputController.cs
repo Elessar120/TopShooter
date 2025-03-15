@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq.Expressions;
 using UnityEngine;
 public class PlayerInputController : Element
@@ -17,6 +18,7 @@ public class PlayerInputController : Element
 
     private void FixedUpdate()
     {
+        // todo: add movement controller
             float moveX = Input.GetAxis("Horizontal");
 
             float speed = TopShooterApplication.topShooterModel.moveSpeed;
@@ -28,10 +30,10 @@ public class PlayerInputController : Element
 
             rigidbody2D.MovePosition(desiredPosition);
             
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
+                TopShooterApplication.topShooterController.weaponController.Fire();
                
             }
-        
     }
 }
