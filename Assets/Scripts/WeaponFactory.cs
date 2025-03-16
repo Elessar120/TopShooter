@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class WeaponFactory : MonoBehaviour, IWeaponFactory
 {
+    public WeaponData[] weaponConfigs; // Assign ScriptableObjects in the Inspector
+
     public WeaponModel CreateWeapon(WeaponType type)
     {
-        return type switch
+        WeaponData config = System.Array.Find(weaponConfigs, w => w.weaponType == type);
+        if (config != null)
         {
-            WeaponType.TypeA => FindObjectOfType<FirstWeaponModel>(),
-            WeaponType.TypeB => FindObjectOfType<SecondWeaponModel>(),
-            WeaponType.TypeC => FindObjectOfType<ThirdWeaponModel>(),
-            _ => null
-        };
+            return new WeaponModel(config.fireRate, config.magazine);
+        }
+        else
+        {
+            return null;
+
+        }
     }
 }

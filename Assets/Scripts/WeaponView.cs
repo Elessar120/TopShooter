@@ -4,13 +4,13 @@ using UnityEngine;
 public class WeaponView : Element
 {
     public WeaponType weaponType = WeaponType.TypeA;
-    public Action<WeaponModel> onWeaponChanged; 
-    
+    public Action<WeaponModel, WeaponController> onWeaponChanged;
+    private WeaponController weaponController;
     private IWeaponFactory _weaponFactory;
 
     private void Awake()
     {
-        _weaponFactory = GetComponent<IWeaponFactory>(); 
+        _weaponFactory = FindObjectOfType<WeaponFactory>(); 
         if (_weaponFactory == null)
         {
             Debug.LogError("WeaponView requires an IWeaponFactory implementation.");
@@ -22,9 +22,24 @@ public class WeaponView : Element
         if (other.CompareTag("Bullet") && _weaponFactory != null)
         {
             var weaponModel = _weaponFactory.CreateWeapon(weaponType);
+            switch (weaponType)
+            {
+                case WeaponType.TypeA:
+                    weaponController = FindObjectOfType<FirstWeaponController>();
+                    break;
+                case WeaponType.TypeB:
+                    weaponController = FindObjectOfType<SecondWeaponController>();
+                    
+                    break;
+                case WeaponType.TypeC:
+                    weaponController = FindObjectOfType<ThirdWeaponController>();
+
+                    break;
+            }
             if (weaponModel != null)
             {
-                onWeaponChanged?.Invoke(weaponModel);
+                onWeaponChanged?.Invoke(weaponModel, weaponController);
+                Debug.Log(weaponModel);
             }
         }
     }

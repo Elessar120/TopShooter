@@ -1,61 +1,64 @@
 using System;
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 
-    public class WeaponController : Element
+public class WeaponController : Element
+{
+    protected WeaponModel weaponModel;
+    protected float fireCooldown;
+    public WeaponController currentWeapon;
+    private void Start()
     {
-        private float fireRate;
+        SubscribeToWeaponChanges();
+        Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), currentWeapon);
+    }
 
-        private bool GetCanFire()
+    private void SubscribeToWeaponChanges()
+    {
+        foreach (var weaponView in TopShooterApplication.topShooterView.weaponView)
         {
-            return TopShooterApplication.topShooterModel.weaponModel.currentWeapon.canFire;
-        }
-        
-        private float GetFireRate()
-        {
-            return TopShooterApplication.topShooterModel.weaponModel.currentWeapon.fireRate;
-        }
-
-        private void SetCanFire(bool value)
-        {
-            TopShooterApplication.topShooterModel.weaponModel.currentWeapon.canFire = value;
-        }
-        private void Update()
-        {
-            if (!GetCanFire())
-            {
-                if (fireRate > 0)
-                {
-                    fireRate -= Time.deltaTime;
-                }
-                if (fireRate <= 0)
-                {
-                    SetCanFire(true);
-                }
-               
-            }
-        }
-
-        public virtual void Fire()
-        {
-            if (!GetCanFire())
-            {
-                return;
-            }
-            Debug.Log("Fire");
-            var bullet = TopShooterApplication.topShooterModel.bulletPool.GetBullet();
-            bullet.transform.position = TopShooterApplication.topShooterModel.bulletSpawnPoint.transform.position;
-            bullet.GetComponent<Bullet>().Activate();
-            StartCoroutine(DestroyBullet(bullet));
-            SetCanFire(false);
-            fireRate = GetFireRate();
-
-            //todo: add bullet function
-        }
-        private IEnumerator DestroyBullet(GameObject bullet)// todo: move to bullet
-        {
-            yield return new WaitForSeconds(TopShooterApplication.topShooterModel.bulletModel.lifeTime);
-            Destroy(bullet);
+            weaponView.onWeaponChanged += Initialize;
         }
     }
+
+
+    public void Initialize(WeaponModel model, WeaponController weaponController)
+    {
+        weaponModel = model;
+        fireCooldown = weaponModel.FireRate;
+        if (currentWeapon == null)
+        {
+            currentWeapon = FindObjectOfType<FirstWeaponController>();
+        }
+        else
+        {
+            currentWeapon = weaponController;
+        }
+    }
+
+    private void Update()
+    {
+        if (!weaponModel.CanFire)
+        {
+            fireCooldown -= Time.deltaTime;
+            if (fireCooldown <= 0)
+            {
+                weaponModel.SetCanFire(true);
+            }
+        }
+    }
+
+    public virtual void Fire()
+    {
+       Debug.Log("Fire");
+       
+       // StartCoroutine(DestroyBullet(bullet));
+        
+    }
+
+    private IEnumerator DestroyBullet(GameObject bullet)
+    {
+        yield return new WaitForSeconds(TopShooterApplication.topShooterModel.bulletModel.lifeTime);
+        bullet.SetActive(false); // به جای Destroy استفاده شود
+    }
+}

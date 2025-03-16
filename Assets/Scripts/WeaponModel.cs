@@ -1,25 +1,19 @@
-using System;
-using UnityEngine;
-using UnityEngine.Serialization;
-
 public class WeaponModel : Element
+{
+    public float FireRate { get; private set; }
+    public int Magazine { get; private set; }
+    public bool CanFire { get; private set; }
+   
+    
+    public WeaponModel(float fireRate, int magazine)
     {
-        public float fireRate;
-        public int magazine;
-        public WeaponModel currentWeapon;
-        public bool canFire;
-
-        private void Start()
-        {
-            TopShooterApplication.topShooterView.weaponView.onWeaponChanged += SetWeapon;
-            canFire = true;
-            SetWeapon(FindObjectOfType<FirstWeaponModel>());
-        }
-        public void SetWeapon(WeaponModel newWeapon)
-        {
-            currentWeapon = newWeapon;
-            fireRate = currentWeapon.fireRate;
-            canFire = true;
-        }
-
+        FireRate = fireRate;
+        Magazine = magazine;
+        CanFire = true;
     }
+
+    public void SetCanFire(bool value)
+    {
+        CanFire = value;
+    }
+}
