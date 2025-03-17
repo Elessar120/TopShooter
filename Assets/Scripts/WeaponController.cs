@@ -10,7 +10,7 @@ public class WeaponController : Element
     private void Start()
     {
         SubscribeToWeaponChanges();
-        Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), currentWeapon);
+        Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), FindObjectOfType<FirstWeaponController>());
     }
 
     private void SubscribeToWeaponChanges()
@@ -29,10 +29,12 @@ public class WeaponController : Element
         if (currentWeapon == null)
         {
             currentWeapon = FindObjectOfType<FirstWeaponController>();
+            Debug.Log("current weapon is null");
         }
         else
         {
             currentWeapon = weaponController;
+            Debug.Log("Current Weapon : " + currentWeapon.name);
         }
     }
 

@@ -6,9 +6,9 @@ public class WeaponView : Element
     public WeaponType weaponType = WeaponType.TypeA;
     public Action<WeaponModel, WeaponController> onWeaponChanged;
     private WeaponController weaponController;
-    private IWeaponFactory _weaponFactory;
+    private WeaponFactory _weaponFactory;
 
-    private void Awake()
+    private void Start()
     {
         _weaponFactory = FindObjectOfType<WeaponFactory>(); 
         if (_weaponFactory == null)
@@ -26,13 +26,16 @@ public class WeaponView : Element
             {
                 case WeaponType.TypeA:
                     weaponController = FindObjectOfType<FirstWeaponController>();
+                    Debug.Log("First");
                     break;
                 case WeaponType.TypeB:
                     weaponController = FindObjectOfType<SecondWeaponController>();
-                    
+                    Debug.Log("Sec");
+
                     break;
                 case WeaponType.TypeC:
                     weaponController = FindObjectOfType<ThirdWeaponController>();
+                    Debug.Log("Thi");
 
                     break;
             }
@@ -40,6 +43,10 @@ public class WeaponView : Element
             {
                 onWeaponChanged?.Invoke(weaponModel, weaponController);
                 Debug.Log(weaponModel);
+            }
+            else if(weaponModel == null)
+            {
+                Debug.LogError("No Weapon Model Find!");
             }
         }
     }

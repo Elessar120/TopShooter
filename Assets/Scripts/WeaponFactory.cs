@@ -6,7 +6,17 @@ public class WeaponFactory : MonoBehaviour, IWeaponFactory
 
     public WeaponModel CreateWeapon(WeaponType type)
     {
-        WeaponData config = System.Array.Find(weaponConfigs, w => w.weaponType == type);
+        Debug.Log("WeaponType type : " + type);
+        WeaponData config = null;
+        foreach (var weapon in weaponConfigs)
+        {
+            if (weapon.weaponType == type)
+            {
+                config = weapon;
+                break; // Stop at the first match
+            }
+        }
+        Debug.Log("Weapon Data Config : " + config.name);
         if (config != null)
         {
             return new WeaponModel(config.fireRate, config.magazine);
@@ -14,7 +24,7 @@ public class WeaponFactory : MonoBehaviour, IWeaponFactory
         else
         {
             return null;
-
         }
+     
     }
 }

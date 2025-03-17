@@ -30,10 +30,6 @@ public class BulletController : Element
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        /*if (other.CompareTag("Enemy"))
-        {
-            // TODO: اعمال آسیب به دشمن
-            gameObject.SetActive(false);
-        }*/
+       
     }
 }
