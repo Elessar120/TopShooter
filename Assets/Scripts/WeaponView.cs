@@ -41,13 +41,14 @@ public class WeaponView : Element
             }
             if (weaponModel != null)
             {
-                onWeaponChanged?.Invoke(weaponModel, weaponController);
-                Debug.Log(weaponModel);
+                onWeaponChanged.Invoke(weaponModel, weaponController);
+                Debug.Log(weaponModel.weaponType.ToString());
             }
             else if(weaponModel == null)
             {
                 Debug.LogError("No Weapon Model Find!");
             }
         }
+        Destroy(gameObject);
     }
 }

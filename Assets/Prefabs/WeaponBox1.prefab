@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2566009504791935338}
   - component: {fileID: 2566009504791935337}
   - component: {fileID: 2566009504791935339}
-  - component: {fileID: 127637774115533484}
   m_Layer: 0
   m_Name: WeaponBox1
   m_TagString: Untagged
@@ -34,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &189239941685306899
 SpriteRenderer:
@@ -138,17 +137,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
---- !u!114 &127637774115533484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701515326823567088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43be2a249cd94a16afba9b0b1b38d266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponConfigs:
-  - {fileID: 11400000, guid: 271ecf3a4582eda4a8ddcb805c9be1f4, type: 2}

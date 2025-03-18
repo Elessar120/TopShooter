@@ -356,10 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1130376056}
-  weaponView:
-  - {fileID: 2566009504791935339, guid: 2950eae8bde1c8b47ae79c915573764f, type: 3}
-  - {fileID: 2566009504791935339, guid: 64c41e28a481d1749a7a810e698fc908, type: 3}
-  - {fileID: 2566009504791935339, guid: 91b565168993d2145b4133044407e357, type: 3}
+  weaponView: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +611,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &522758374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522758376}
+  - component: {fileID: 522758375}
+  m_Layer: 0
+  m_Name: WeaponSpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &522758375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522758374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cee27055d43ac94caace0fb91888f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToSpawn:
+  - {fileID: 701515326823567088, guid: 2950eae8bde1c8b47ae79c915573764f, type: 3}
+  - {fileID: 701515326823567088, guid: 64c41e28a481d1749a7a810e698fc908, type: 3}
+  - {fileID: 701515326823567088, guid: 91b565168993d2145b4133044407e357, type: 3}
+  spawnPoints:
+  - {fileID: 1385749231}
+  - {fileID: 1808635622}
+  - {fileID: 866521494}
+  - {fileID: 1194661531}
+  spawnInterval: 20
+  maxObjects: 10
+--- !u!4 &522758376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522758374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548582257
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b94302e95144ae89644cf0903a2a432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponModel: {fileID: 0}
   currentWeapon: {fileID: 0}
 --- !u!1 &599629416
 GameObject:
@@ -703,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16ce7417736452a8fd468f69e12ef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponModel: {fileID: 0}
   currentWeapon: {fileID: 0}
 --- !u!1 &615174489
 GameObject:
@@ -810,6 +864,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3373aa7e8e3345299a1837245e6c96ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireRate: 0
+  Magazine: 0
+  CanFire: 0
+  weaponType: 0
+  bulletType: 0
+  heatPerShot: 0.05
+  coolingRate: 0.025
+  damage: 0
+  explosionRadius: 5
+  explosionForce: 10
+  affectedLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &789067547
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1065,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponBox3
       objectReference: {fileID: 0}
+    - target: {fileID: 701515326823567088, guid: 91b565168993d2145b4133044407e357, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8917232733331403382, guid: 91b565168993d2145b4133044407e357, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1043,7 +1114,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2566009504791935340, guid: 91b565168993d2145b4133044407e357, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 91b565168993d2145b4133044407e357, type: 3}
 --- !u!1 &866521493
 GameObject:
@@ -1105,10 +1176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43be2a249cd94a16afba9b0b1b38d266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponConfigs:
-  - {fileID: 11400000, guid: 271ecf3a4582eda4a8ddcb805c9be1f4, type: 2}
-  - {fileID: 11400000, guid: 428e699905a72974aa171ca0928b66c8, type: 2}
-  - {fileID: 11400000, guid: de2c102f4c15bb8419c7fb3cd1b94923, type: 2}
+  weaponModels:
+  - {fileID: 2014470050}
+  - {fileID: 2131315503}
+  - {fileID: 1008964925}
 --- !u!4 &906417345
 Transform:
   m_ObjectHideFlags: 0
@@ -1168,6 +1239,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f94278f5674368a0baf33cd4fa204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireRate: 30
+  Magazine: 5
+  CanFire: 0
+  weaponType: 2
+  bulletType: 1
+  heatPerShot: 0.05
+  coolingRate: 0.025
+  damage: 50
+  explosionRadius: 5
+  explosionForce: 10
+  affectedLayers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1009383695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponBox2
       objectReference: {fileID: 0}
+    - target: {fileID: 701515326823567088, guid: 64c41e28a481d1749a7a810e698fc908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8917232733331403382, guid: 64c41e28a481d1749a7a810e698fc908, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1346,7 +1434,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2566009504791935340, guid: 64c41e28a481d1749a7a810e698fc908, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 64c41e28a481d1749a7a810e698fc908, type: 3}
 --- !u!1 &1624621671
 GameObject:
@@ -1440,6 +1528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fd3667b0e34fa996dbd713d5e4d55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponModel: {fileID: 0}
   currentWeapon: {fileID: 0}
 --- !u!1 &1697847543
 GameObject:
@@ -1485,6 +1574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9721be1ce27f4b8295b5ead4ea429f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponModel: {fileID: 0}
   currentWeapon: {fileID: 0}
 --- !u!1 &1808635621
 GameObject:
@@ -1578,6 +1668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponBox1
       objectReference: {fileID: 0}
+    - target: {fileID: 701515326823567088, guid: 2950eae8bde1c8b47ae79c915573764f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8917232733331403382, guid: 2950eae8bde1c8b47ae79c915573764f, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1623,7 +1717,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 127637774115533484, guid: 2950eae8bde1c8b47ae79c915573764f, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2950eae8bde1c8b47ae79c915573764f, type: 3}
 --- !u!1 &2014470048
 GameObject:
@@ -1669,6 +1763,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d53896cfe42b4beaa8d0f3a6f8c5c86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireRate: 0.3
+  Magazine: 100
+  CanFire: 0
+  weaponType: 0
+  bulletType: 0
+  heatPerShot: 0.05
+  coolingRate: 0.025
+  damage: 0
+  explosionRadius: 5
+  explosionForce: 10
+  affectedLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2131315501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,6 +1820,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bc95ffc8434514856da48b302ff67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireRate: 0.1
+  Magazine: 5000
+  CanFire: 0
+  weaponType: 1
+  bulletType: 0
+  heatPerShot: 0.05
+  coolingRate: 0.025
+  damage: 0
+  explosionRadius: 5
+  explosionForce: 10
+  affectedLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &5816372149357720605
 PrefabInstance:
   m_ObjectHideFlags: 0

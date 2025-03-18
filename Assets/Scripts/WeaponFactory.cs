@@ -2,24 +2,34 @@ using UnityEngine;
 
 public class WeaponFactory : MonoBehaviour, IWeaponFactory
 {
-    public WeaponData[] weaponConfigs; // Assign ScriptableObjects in the Inspector
+    public WeaponModel[] weaponModels; // Assign ScriptableObjects in the Inspector
 
     public WeaponModel CreateWeapon(WeaponType type)
     {
-        Debug.Log("WeaponType type : " + type);
-        WeaponData config = null;
-        foreach (var weapon in weaponConfigs)
+        WeaponModel newModel = null;
+        foreach (var model in weaponModels)
         {
-            if (weapon.weaponType == type)
+            if (model.weaponType == type)
             {
-                config = weapon;
+                newModel = model;
                 break; // Stop at the first match
             }
         }
-        Debug.Log("Weapon Data Config : " + config.name);
-        if (config != null)
+
+        if (newModel != null)
         {
-            return new WeaponModel(config.fireRate, config.magazine);
+            var model = FindFirstObjectByType<WeaponModel>();
+            model.Magazine = newModel.Magazine;
+            model.FireRate = newModel.FireRate;
+            model.heatPerShot = newModel.heatPerShot;
+            model.coolingRate = newModel.coolingRate;
+            model.weaponType = newModel.weaponType;
+            model.bulletType = newModel.bulletType;
+            model.damage = newModel.damage;
+            model.explosionForce = newModel.explosionForce;
+            model.explosionRadius = newModel.explosionRadius;
+            model.affectedLayers = newModel.affectedLayers;
+            return model;
         }
         else
         {

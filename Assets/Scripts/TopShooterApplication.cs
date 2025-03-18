@@ -7,5 +7,5 @@ public class TopShooterApplication : MonoBehaviour
         public TopShooterView topShooterView;
         public TopShooterController topShooterController;
 
-        void Start() { }
+       
     }

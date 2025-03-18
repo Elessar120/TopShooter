@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class WeaponController : Element
 {
-    protected WeaponModel weaponModel;
+    public WeaponModel weaponModel;
     protected float fireCooldown;
     public WeaponController currentWeapon;
     private void Start()
     {
         SubscribeToWeaponChanges();
-        Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), FindObjectOfType<FirstWeaponController>());
+        Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), FindObjectOfType<FirstWeaponController>() as WeaponController);
     }
 
-    private void SubscribeToWeaponChanges()
+    public void SubscribeToWeaponChanges()
     {
         foreach (var weaponView in TopShooterApplication.topShooterView.weaponView)
         {
             weaponView.onWeaponChanged += Initialize;
+            Debug.Log(weaponView.gameObject.name);
         }
     }
 
@@ -26,16 +27,9 @@ public class WeaponController : Element
     {
         weaponModel = model;
         fireCooldown = weaponModel.FireRate;
-        if (currentWeapon == null)
-        {
-            currentWeapon = FindObjectOfType<FirstWeaponController>();
-            Debug.Log("current weapon is null");
-        }
-        else
-        {
-            currentWeapon = weaponController;
-            Debug.Log("Current Weapon : " + currentWeapon.name);
-        }
+        currentWeapon = weaponController;
+        Debug.Log(currentWeapon.name);
+
     }
 
     private void Update()

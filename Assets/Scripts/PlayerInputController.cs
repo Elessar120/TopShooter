@@ -3,19 +3,17 @@ using UnityEngine;
 public class PlayerInputController : Element
 {
     private Rigidbody2D rb;
-    private WeaponController weaponController;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        weaponController = FindObjectOfType<FirstWeaponController>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            weaponController.currentWeapon.Fire();
+            TopShooterApplication.topShooterController.weaponController.currentWeapon.Fire();
         }
     }
 
