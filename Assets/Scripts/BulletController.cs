@@ -5,11 +5,11 @@ public class BulletController : Element
 {
     private Rigidbody2D rb;
     private float speed = 50;
-    private IHit hit;
+    private IHit hitEnemy;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        hit = GetComponent<IHit>();
+        hitEnemy = GetComponent<IHit>();
     }
 
     public void Initialize(float bulletSpeed)
@@ -20,7 +20,7 @@ public class BulletController : Element
     public void Activate()
     {
         gameObject.SetActive(true);
-        rb.velocity = Vector2.up * speed;
+        rb.linearVelocity = Vector2.up * speed;
         StartCoroutine(DestroyBullet());
     }
     private IEnumerator DestroyBullet()
@@ -32,8 +32,13 @@ public class BulletController : Element
     private void OnTriggerEnter2D(Collider2D other)
     {
        if(other.CompareTag("Enemy"))
-        {
-            hit.Hit(other);
-        }
+       {
+           hitEnemy.Hit(other);
+       }
+
+       if (other.CompareTag("WeaponBox"))
+       {
+           
+       }
     }
 }

@@ -9,26 +9,25 @@ public class WeaponController : Element
     public WeaponController currentWeapon;
     private void Start()
     {
-        SubscribeToWeaponChanges();
         Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), FindObjectOfType<FirstWeaponController>() as WeaponController);
     }
 
-    public void SubscribeToWeaponChanges()
+    public void SubscribeToWeaponChanges(WeaponView weaponView)
     {
-        foreach (var weaponView in TopShooterApplication.topShooterView.weaponView)
-        {
-            weaponView.onWeaponChanged += Initialize;
-            Debug.Log(weaponView.gameObject.name);
-        }
-    }
+       weaponView.onWeaponChanged += Initialize;
+    }   
 
+    public void UnSubscribeToWeaponChanges(WeaponView weaponView)
+    {
+            weaponView.onWeaponChanged -= Initialize;
+    }
 
     public void Initialize(WeaponModel model, WeaponController weaponController)
     {
         weaponModel = model;
         fireCooldown = weaponModel.FireRate;
         currentWeapon = weaponController;
-        Debug.Log(currentWeapon.name);
+//        Debug.Log(currentWeapon.name);
 
     }
 
@@ -36,9 +35,11 @@ public class WeaponController : Element
     {
         if (!weaponModel.CanFire)
         {
-            fireCooldown -= Time.deltaTime;
+            fireCooldown -= Time.deltaTime; 
+
             if (fireCooldown <= 0)
             {
+                fireCooldown = weaponModel.FireRate; // Reset cooldown properly
                 weaponModel.SetCanFire(true);
             }
         }

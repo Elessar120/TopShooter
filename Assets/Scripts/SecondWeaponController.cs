@@ -28,7 +28,7 @@ public class SecondWeaponController : WeaponController
         var bullet = TopShooterApplication.topShooterModel.bulletPool.GetBullet();
         bullet.transform.position = TopShooterApplication.topShooterModel.bulletSpawnPoint.position;
         bullet.GetComponent<BulletController>().Activate();
-
+        bullet.AddComponent<SimpleBullet>();
         // افزایش دمای سلاح پس از شلیک
         weaponHeat += TopShooterApplication.topShooterModel.weaponModel.heatPerShot;
         weaponHeat = Mathf.Clamp(weaponHeat, 0f, maxHeat);

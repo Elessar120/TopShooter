@@ -13,13 +13,14 @@ public class ThirdWeaponController : WeaponController
         {
 
         if (!TopShooterApplication.topShooterModel.weaponModel.CanFire) return;
-        Debug.Log("Fire in Second Weapon Controller");
+        Debug.Log("Fire in third Weapon Controller");
 
         var bullet = TopShooterApplication.topShooterModel.bulletPool.GetBullet();
         bullet.transform.position = TopShooterApplication.topShooterModel.bulletSpawnPoint.position;
         bullet.GetComponent<BulletController>().Activate();
+        bullet.AddComponent<ExplosiveBullet>();
 
         TopShooterApplication.topShooterModel.weaponModel.SetCanFire(false);
-        fireCooldown = weaponModel.FireRate;
+        fireCooldown = TopShooterApplication.topShooterModel.weaponModel.FireRate;
     }
    }

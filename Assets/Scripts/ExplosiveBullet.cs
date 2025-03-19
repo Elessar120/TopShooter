@@ -31,6 +31,8 @@ public class ExplosiveBullet : Element, IHit
         }
 
         OnBulletHit?.Invoke();
-        Destroy(gameObject);
+        Destroy(this);
+        TopShooterApplication.topShooterModel.bulletPool.ReturnBullet(gameObject);
+        
     }
 }

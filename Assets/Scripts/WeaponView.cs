@@ -26,29 +26,29 @@ public class WeaponView : Element
             {
                 case WeaponType.TypeA:
                     weaponController = FindObjectOfType<FirstWeaponController>();
-                    Debug.Log("First");
+                //    Debug.Log("First");
                     break;
                 case WeaponType.TypeB:
                     weaponController = FindObjectOfType<SecondWeaponController>();
-                    Debug.Log("Sec");
+//                    Debug.Log("Sec");
 
                     break;
                 case WeaponType.TypeC:
                     weaponController = FindObjectOfType<ThirdWeaponController>();
-                    Debug.Log("Thi");
+                 //   Debug.Log("Thi");
 
                     break;
             }
             if (weaponModel != null)
             {
                 onWeaponChanged.Invoke(weaponModel, weaponController);
-                Debug.Log(weaponModel.weaponType.ToString());
+//                Debug.Log(weaponModel.weaponType.ToString());
             }
             else if(weaponModel == null)
             {
-                Debug.LogError("No Weapon Model Find!");
+             //   Debug.LogError("No Weapon Model Find!");
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

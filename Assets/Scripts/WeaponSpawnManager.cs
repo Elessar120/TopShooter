@@ -41,8 +41,9 @@ public class WeaponSpawnManager : Element
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject spawned = Instantiate(objectsToSpawn[Random.Range(0, objectsToSpawn.Length)], spawnPoint.position, spawnPoint.rotation);
-        TopShooterApplication.topShooterView.weaponView.Add(spawned.GetComponent<WeaponView>());
-        TopShooterApplication.topShooterController.weaponController.SubscribeToWeaponChanges();
+        WeaponView weaponView = spawned.GetComponent<WeaponView>();
+        //TopShooterApplication.topShooterView.weaponView.Add(weaponView);
+        TopShooterApplication.topShooterController.weaponController.SubscribeToWeaponChanges(weaponView);
         spawnedObjects.Add(spawned);
 
     }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleBullet : Element, IHit
@@ -11,6 +9,7 @@ public class SimpleBullet : Element, IHit
     {
         other.GetComponent<Health>().TakeDamage(TopShooterApplication.topShooterModel.weaponModel.damage);
         OnBulletHit?.Invoke();
-        Destroy(gameObject);
+        Destroy(this);
+        TopShooterApplication.topShooterModel.bulletPool.ReturnBullet(gameObject);
     }
 }
