@@ -1,13 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour, ItakeDamage
-{
-    float ItakeDamage.Health { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+{ 
+    public Action OnDeath { get; set; }
+    [SerializeField] float maxHealth;
+    private float currentHealth;
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
+
 
     public void TakeDamage(float amount)
-    {
-        throw new System.NotImplementedException();
+        {
+            currentHealth -= amount;
+            if (currentHealth <= 0)
+            {
+               OnDeath?.Invoke();
+               Destroy(gameObject);
+            }
+        }
     }
-}

@@ -1,0 +1,34 @@
+{
+  "waves": [
+    {
+      "id": 1,
+      "delay": 2.0,
+      "spawnRate": 1.0,
+      "enemies": [
+        {
+          "type": "grunt",
+          "count": 10,
+          "positions": [
+            { "x": 0, "y": 0 },
+            { "x": 2, "y": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "delay": 5.0,
+      "spawnRate": 1.5,
+      "enemies": [
+        {
+          "type": "elite",
+          "count": 5,
+          "positions": [
+            { "x": 5, "y": 0 },
+            { "x": 7, "y": 0 }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
+using System;
+
 public interface ItakeDamage
 {
-    public float Health { get; set; }
+    public Action OnDeath { get; set; }
     public void TakeDamage(float amount);
 }

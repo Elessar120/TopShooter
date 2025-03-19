@@ -38,8 +38,5 @@ public class ScreenBorderController : MonoBehaviour
     rightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, mainCamera.nearClipPlane));
     rightborder.transform.position = rightEdge;
     leftborder.transform.position = leftEdge;
-
-    Debug.Log($"Updated Edges: Left {leftEdge}, Right {rightEdge}, Top {topEdge}, Bottom {bottomEdge}");
-    
   }
 }
