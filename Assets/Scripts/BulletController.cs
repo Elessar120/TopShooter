@@ -6,7 +6,7 @@ public class BulletController : Element
     private Rigidbody2D rb;
     private float speed = 50;
     private IHit hitEnemy;
-    private void Awake()
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         hitEnemy = GetComponent<IHit>();
@@ -31,9 +31,10 @@ public class BulletController : Element
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+
        if(other.CompareTag("Enemy"))
        {
-           hitEnemy.Hit(other);
+           GetComponent<IHit>().Hit(other);
        }
 
        if (other.CompareTag("WeaponBox"))

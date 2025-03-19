@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67da033c311a45b8805963df8ae7c5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputController: {fileID: 1130376055}
+  inputController: {fileID: 0}
   weaponController: {fileID: 548582259}
 --- !u!1 &410087039
 GameObject:
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b94302e95144ae89644cf0903a2a432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponModel: {fileID: 0}
+  weaponModel: {fileID: 700939444}
   currentWeapon: {fileID: 0}
 --- !u!1 &599629416
 GameObject:
@@ -1309,15 +1309,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f94278f5674368a0baf33cd4fa204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 30
+  FireRate: 10
   Magazine: 5
   CanFire: 0
   weaponType: 2
   bulletType: 1
   heatPerShot: 0.05
   coolingRate: 0.025
-  damage: 50
-  explosionRadius: 5
+  damage: 15
+  explosionRadius: 10
   explosionForce: 10
   affectedLayers:
     serializedVersion: 2
@@ -1376,23 +1376,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4872587854980935012, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
   m_PrefabInstance: {fileID: 5816372149357720605}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1130376055 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9150961496836178441, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
-  m_PrefabInstance: {fileID: 5816372149357720605}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c982420337e8ec94bb53d830e75b2632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1130376056 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3373024755819963889, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
   m_PrefabInstance: {fileID: 5816372149357720605}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1679376244}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d250f5678a14221acd9c20432a8ab62, type: 3}
@@ -1689,6 +1678,71 @@ MonoBehaviour:
   lifeTime: 5
   speed: 2000
   direction: {x: 0, y: 1}
+--- !u!1 &1679376244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5363523501787166753, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
+  m_PrefabInstance: {fileID: 5816372149357720605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1679376245 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7164223502758878752, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
+  m_PrefabInstance: {fileID: 5816372149357720605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1679376248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679376244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be99096d4b304a4a863de80fc83ec21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1679376245}
+  moveSpeed: 5
+--- !u!114 &1679376249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679376244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f688975f75fb4ca0bbe483685046b591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponController: {fileID: 1697847545}
+  fireRate: 0.5
+--- !u!114 &1679376250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679376244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54736d4c12f946029096f0cec7a27fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1679376245}
+  moveSpeed: 5
+--- !u!114 &1679376251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679376244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642dee7d6d334c13b3223467a054334e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponController: {fileID: 1697847545}
 --- !u!1 &1682745530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,7 +1833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9721be1ce27f4b8295b5ead4ea429f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponModel: {fileID: 0}
+  weaponModel: {fileID: 700939444}
   currentWeapon: {fileID: 0}
 --- !u!1 &1808635621
 GameObject:
@@ -1972,16 +2026,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d53896cfe42b4beaa8d0f3a6f8c5c86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0.3
+  FireRate: 0.25
   Magazine: 100
   CanFire: 0
   weaponType: 0
   bulletType: 0
-  heatPerShot: 0.05
-  coolingRate: 0.025
-  damage: 0
-  explosionRadius: 5
-  explosionForce: 10
+  heatPerShot: 0
+  coolingRate: 0
+  damage: 2.5
+  explosionRadius: 0
+  explosionForce: 0
   affectedLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2029,16 +2083,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bc95ffc8434514856da48b302ff67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0.1
+  FireRate: 0.125
   Magazine: 5000
   CanFire: 0
   weaponType: 1
   bulletType: 0
   heatPerShot: 0.05
   coolingRate: 0.025
-  damage: 0
-  explosionRadius: 5
-  explosionForce: 10
+  damage: 5
+  explosionRadius: 0
+  explosionForce: 0
   affectedLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2102,10 +2156,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9150961496836178441, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5363523501787166753, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679376251}
+    - targetCorrespondingSourceObject: {fileID: 5363523501787166753, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679376250}
+    - targetCorrespondingSourceObject: {fileID: 5363523501787166753, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679376249}
+    - targetCorrespondingSourceObject: {fileID: 5363523501787166753, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679376248}
     - targetCorrespondingSourceObject: {fileID: 8862878655336880386, guid: d343fdd369606d8498d26f2051b5b817, type: 3}
       insertIndex: -1
       addedObject: {fileID: 667556786}
