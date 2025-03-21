@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.Serialization;
-
+/// <summary>
+/// holdes refrences to controller/view/model holders
+/// </summary>
 public class TopShooterApplication : MonoBehaviour
     {
         public TopShooterModel topShooterModel;
-        public TopShooterView topShooterView;
         public TopShooterController topShooterController;
 
        

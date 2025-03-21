@@ -1,17 +1,9 @@
 using UnityEngine;
 
-/// <summary>
-///   Handles touch fire input.
-/// </summary>
 public class TouchFireInput : MonoBehaviour, IFireInput
 {
     [SerializeField]
     private WeaponController weaponController; // Assign in inspector
-
-    [SerializeField]
-    private float fireRate = 0.5f;
-
-    private float nextFireTime;
 
     private void Start()
     {
@@ -19,9 +11,8 @@ public class TouchFireInput : MonoBehaviour, IFireInput
         {
             Debug.LogError("WeaponController is not assigned!");
         }
-        nextFireTime = Time.time;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         FireInput();
     }
@@ -31,19 +22,10 @@ public class TouchFireInput : MonoBehaviour, IFireInput
     /// </summary>
     public void FireInput()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 1)
         {
             // Fire automatically
-            if (Time.time > nextFireTime)
-            {
                 weaponController.currentWeapon.Fire();
-                nextFireTime = Time.time + fireRate;
-            }
-        }
-        else
-        {
-            //if you want the player to stop firing when not touching screen
-            //nextFireTime = Time.time;
         }
     }
 }

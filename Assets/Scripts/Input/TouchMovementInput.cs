@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 
 /// <summary>
 ///   Handles touch movement input.
 /// </summary>
-public class TouchMovementInput : MonoBehaviour, IMovementInput
+public class TouchMovementInput : Element, IMovementInput
 {
     [SerializeField]
     private Rigidbody2D rb;
 
+    private bool isDragging;
+    private Vector2 offset;
+private Touch touch;
     [SerializeField]
     private float moveSpeed = 5f;
 
@@ -18,30 +22,42 @@ public class TouchMovementInput : MonoBehaviour, IMovementInput
         mainCamera = Camera.main;
     }
 
+    private void FixedUpdate()
+    {
+        HandleInput();
+    }
+
     /// <summary>
     ///   Handles touch movement input.
     /// </summary>
     public void HandleInput()
     {
+        Debug.Log("TouchMovementInput");
+
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchPosition = mainCamera.ScreenToWorldPoint(touch.position);
+            Touch touch = Input.GetTouch(0); // screen has been touched, store the touch
 
-            // Move the player
-            Vector2 movement = (Vector2)transform.position - touchPosition;
-            movement.x *= -1;
-            movement = movement.normalized;
-            float speed = moveSpeed; // Use local moveSpeed
-            Vector3 move = new Vector3(movement.x, 0, 0f) * (speed * Time.deltaTime);
+            if (touch.phase == TouchPhase.Began)
+            {
+                isDragging = true;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                isDragging = false;
+            }
 
-            // Example boundaries (you might want to get these from somewhere else)
-            float leftBoundary = -5f;
-            float rightBoundary = 5f;
+            if (isDragging)
+            {
+                Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                Vector2 _dir = new Vector2(touchPosition.x, rb.transform.position.y); // Use touchPosition.y
 
-            Vector3 desiredPosition = transform.position + move;
-            desiredPosition.x = Mathf.Clamp(desiredPosition.x, leftBoundary, rightBoundary);
-            rb.MovePosition(desiredPosition);
+                rb.transform.position = Vector2.Lerp(rb.transform.position, _dir, Time.deltaTime * 10);
+            }
+        }
+        else{
+            isDragging = false;
         }
     }
+    
 }

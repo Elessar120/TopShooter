@@ -1,8 +1,4 @@
 using UnityEngine;
-
-/// <summary>
-///   Handles keyboard fire input.
-/// </summary>
 public class KeyboardFireInput : MonoBehaviour, IFireInput
 {
     [SerializeField]
@@ -15,14 +11,11 @@ public class KeyboardFireInput : MonoBehaviour, IFireInput
             Debug.LogError("WeaponController is not assigned!");
         }
     }
-    private void FixedUpdate()
+    private void Update()
     {
         FireInput();
     }
-
-    /// <summary>
-    ///   Handles keyboard fire input.
-    /// </summary>
+    
     public void FireInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))

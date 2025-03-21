@@ -1,9 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-///   Handles keyboard movement input.
-/// </summary>
-public class KeyboardMovementInput : MonoBehaviour, IMovementInput
+public class KeyboardMovementInput : Element, IMovementInput
 {
     [SerializeField]
     private Rigidbody2D rb;
@@ -15,19 +12,15 @@ public class KeyboardMovementInput : MonoBehaviour, IMovementInput
     {
         HandleInput();
     }
-
-    /// <summary>
-    ///   Handles keyboard movement input.
-    /// </summary>
+    
     public void HandleInput()
     {
         float moveX = Input.GetAxis("Horizontal");
         float speed = moveSpeed; // Use local moveSpeed
         Vector3 movement = new Vector3(moveX, 0, 0f) * (speed * Time.fixedDeltaTime);
 
-        // Example boundaries (you might want to get these from somewhere else)
-        float leftBoundary = -5f;
-        float rightBoundary = 5f;
+        float leftBoundary = TopShooterApplication.topShooterModel.leftEdge.position.x + 1f;
+        float rightBoundary = TopShooterApplication.topShooterModel.rightEdge.position.x - 1f;;
 
         Vector3 desiredPosition = transform.position + movement;
         desiredPosition.x = Mathf.Clamp(desiredPosition.x, leftBoundary, rightBoundary);

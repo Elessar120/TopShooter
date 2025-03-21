@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-/// <summary>
-///   Handles player input for movement and firing.
-/// </summary>
 public class PlayerInputController : MonoBehaviour
 {
     [SerializeField]
@@ -12,13 +8,21 @@ public class PlayerInputController : MonoBehaviour
 
     private IMovementInput movementInput;
     private IFireInput fireInput;
-
+    private TopShooterApplication topShooterApplication;
     private void Start()
     {
-        // Dependency Inversion: Using interfaces
-        movementInput = GetComponent<IMovementInput>();
-        fireInput = GetComponent<IFireInput>();
-
+        topShooterApplication = FindFirstObjectByType<TopShooterApplication>();
+        // Get the appropriate input components based on the current input type
+        if (InputManager.Instance.currentInputType == InputType.Keyboard)
+        {
+            movementInput = GetComponent<KeyboardMovementInput>();
+            fireInput = GetComponent<KeyboardFireInput>();
+        }
+        else
+        {
+            movementInput = GetComponent<TouchMovementInput>();
+            fireInput = GetComponent<TouchFireInput>();
+        }
         if (movementInput == null)
         {
             Debug.LogError("No IMovementInput component found on the player!");
@@ -32,8 +36,17 @@ public class PlayerInputController : MonoBehaviour
 
     private void Update()
     {
-        // Delegate input handling to the appropriate components
+        //dont move if game over
+       if (!topShooterApplication.topShooterModel.isRunning)
+            return; 
+       fireInput?.FireInput();
+    }
+
+    private void FixedUpdate()
+    {
+        //dont fire if game over
+        if (!topShooterApplication.topShooterModel.isRunning)
+            return;
         movementInput?.HandleInput();
-        fireInput?.FireInput();
     }
 }

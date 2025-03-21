@@ -10,9 +10,10 @@ public class EnemyMove : MonoBehaviour
         Move();
     }
 
-    public void Move()
+    private void Move()
     {
         // Move the enemy downwards along the Y-axis
         transform.Translate(Vector3.down * moveSpeed * Time.fixedDeltaTime);
     }
+    
 }

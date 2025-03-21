@@ -1,28 +1,36 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
-
-public class ScreenBorderController : MonoBehaviour
+/// <summary>
+/// ensure screen borders be in screen edges 
+/// </summary>
+public class ScreenBorderController : Element
 {
   [SerializeField] Camera mainCamera;
-  [SerializeField] private GameObject rightborder;
-  [SerializeField] private GameObject leftborder;
+  private Transform rightborder;
+  private Transform leftborder;
+  private Transform topborder;
   private Vector3 lastCamPos;
   private Vector2 lastScreenSize;
-  private Vector3 leftEdge, rightEdge, topEdge, bottomEdge;
+  private Vector3 leftEdge, rightEdge, topEdge;
 
-  void Start()
+  private void Awake()
   {
     if (mainCamera == null)
       mainCamera = Camera.main;
+    rightborder = TopShooterApplication.topShooterModel.rightEdge;
+    leftborder = TopShooterApplication.topShooterModel.leftEdge;
+    topborder = TopShooterApplication.topShooterModel.topEdge;
+  }
+
+  void Start()
+  {
     UpdateScreenEdges();
   }
   private void LateUpdate()
   {
     // Update only if the camera moved or screen size changed
     if (mainCamera.transform.position != lastCamPos || 
-        Screen.width != lastScreenSize.x || 
-        Screen.height != lastScreenSize.y)
+        !Mathf.Approximately(Screen.width, lastScreenSize.x) || 
+        !Mathf.Approximately(Screen.height, lastScreenSize.y))
     {
       UpdateScreenEdges();
     }
@@ -36,7 +44,9 @@ public class ScreenBorderController : MonoBehaviour
 
     leftEdge = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, mainCamera.nearClipPlane));
     rightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, mainCamera.nearClipPlane));
+    topEdge = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 1f, mainCamera.nearClipPlane)) - new Vector3(0, -1, 0);
     rightborder.transform.position = rightEdge;
     leftborder.transform.position = leftEdge;
+    topborder.transform.position = topEdge;
   }
 }
