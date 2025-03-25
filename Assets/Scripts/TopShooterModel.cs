@@ -5,6 +5,7 @@ public class TopShooterModel : Element
         public Transform rightEdge;
         public Transform leftEdge;
         public Transform topEdge;
+        public Transform buttonEdge;
         public Pool simpleBullet;
         public Pool explosiveBullet;
         public Pool enemy1;

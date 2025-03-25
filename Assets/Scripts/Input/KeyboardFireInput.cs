@@ -1,5 +1,5 @@
 using UnityEngine;
-public class KeyboardFireInput : MonoBehaviour, IFireInput
+public class KeyboardFireInput : MonoBehaviour
 {
     [SerializeField]
     private WeaponController weaponController; 

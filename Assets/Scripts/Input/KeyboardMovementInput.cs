@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyboardMovementInput : Element, IMovementInput
+public class KeyboardMovementInput : Element
 {
     [SerializeField]
     private Rigidbody2D rb;
