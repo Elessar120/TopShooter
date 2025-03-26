@@ -128,7 +128,7 @@ public class EnemySpawnController : Element
     }
 
     /// <summary>
-    /// Gets a random spawn position within the game world.
+    /// Gets a random spawn position within the game world. 
     /// </summary>
     /// <returns>A random Vector2 spawn position.</returns>
     private Vector2 GetRandomSpawnPosition()

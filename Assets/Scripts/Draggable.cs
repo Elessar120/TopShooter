@@ -7,7 +7,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     private Canvas canvas;
     private bool isDragging = false;
     [SerializeField]
-    private float dragDelay = 0.5f;
+    private float dragDelay = 1f;
     private float pointerDownTime;
 
     private void Awake()

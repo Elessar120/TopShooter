@@ -27,7 +27,7 @@ public class TouchMovementInput : Element
         // Initialize boundary values
         leftEdge = TopShooterApplication.topShooterModel.leftEdge.position.x + 1;
         rightEdge = TopShooterApplication.topShooterModel.rightEdge.position.x - 1;
-        bottomEdge = TopShooterApplication.topShooterModel.buttonEdge.position.y + 1.5f;
+        bottomEdge = TopShooterApplication.topShooterModel.buttonEdge.position.y + 2f;
         topEdge = TopShooterApplication.topShooterModel.topEdge.position.y - 2;
     }
 

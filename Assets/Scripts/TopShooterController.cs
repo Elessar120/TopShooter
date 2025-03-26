@@ -2,4 +2,5 @@
     {
         public WeaponController weaponController;
         public ScoreController scoreController;
+        public GameplayUIController gameplayUIController;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,20 +9,20 @@ public class WeaponController : Element
     public WeaponController currentWeapon;
     private void Start()
     {
-        Initialize(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), FindObjectOfType<FirstWeaponController>() as WeaponController);
+        InitializeWeapon(FindObjectOfType<WeaponFactory>()?.CreateWeapon(WeaponType.TypeA), FindObjectOfType<FirstWeaponController>() as WeaponController);
     }
-
-    public void SubscribeToWeaponChanges(WeaponView weaponView)
-    {
-       weaponView.onWeaponChanged += Initialize;
-    }
-
-    private void Initialize(WeaponModel model, WeaponController weaponController)
+    
+    public void InitializeWeapon(WeaponModel model, WeaponController weaponController)
     {
         weaponModel = model;
         fireRate = weaponModel.FireRate;
         currentWeapon = weaponController;
-
+        TopShooterApplication.topShooterController.gameplayUIController.UpdateWeaponAmmoUI(weaponModel);
+    }
+    public void Reload(WeaponModel model)
+    {
+        model.AmmoCount = model.Magazine;
+        TopShooterApplication.topShooterController.gameplayUIController.UpdateWeaponAmmoUI(model);
     }
 
     private void Update()
@@ -36,11 +37,11 @@ public class WeaponController : Element
                 weaponModel.SetCanFire(true);
             }
         }
+        
     }
 
     public virtual void Fire()
     {
-        
     }
     
 }

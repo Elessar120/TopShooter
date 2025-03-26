@@ -10,10 +10,15 @@ public class EnemyHealth : MonoBehaviour, ItakeDamage
     
     private void Awake()
     {
-        currentHealth = maxHealth;
         returnToPool = gameObject.GetComponent<IReturnToPool>();
 
     }
+
+    private void OnEnable()
+    {
+        currentHealth = maxHealth;
+    }
+
     /// <summary>
     /// reduv=ce enemy health
     /// </summary>

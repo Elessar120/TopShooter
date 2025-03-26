@@ -19,7 +19,7 @@ public class WeaponFactory : MonoBehaviour, IWeaponFactory
         if (newModel != null)
         {
             var model = FindFirstObjectByType<WeaponModel>();
-            model.Magazine = newModel.Magazine;
+            model.AmmoCount = newModel.AmmoCount;
             model.FireRate = newModel.FireRate;
             model.heatPerShot = newModel.heatPerShot;
             model.coolingRate = newModel.coolingRate;
@@ -29,6 +29,7 @@ public class WeaponFactory : MonoBehaviour, IWeaponFactory
             model.explosionForce = newModel.explosionForce;
             model.explosionRadius = newModel.explosionRadius;
             model.affectedLayers = newModel.affectedLayers;
+            model.ammoText = newModel.ammoText;
             return model;
         }
         else

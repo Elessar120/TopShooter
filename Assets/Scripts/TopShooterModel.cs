@@ -14,5 +14,8 @@ public class TopShooterModel : Element
         public Transform bulletSpawnPoint;
         public BulletModel bulletModel;
         public WeaponModel weaponModel;
+        public WeaponModel firstWeaponModel;
+        public WeaponModel secondWeaponModel;
+        public WeaponModel thirdWeaponModel;
         public bool isRunning = true;
     }
