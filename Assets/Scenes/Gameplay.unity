@@ -3090,6 +3090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   winCanvas: {fileID: 439748536}
   loseCanvas: {fileID: 541310625}
+  secondWeapon: {fileID: 1924730051}
   weapon1BulletText: {fileID: 45943568}
   weapon2BulletText: {fileID: 892723697}
   weapon3BulletText: {fileID: 1146802497}

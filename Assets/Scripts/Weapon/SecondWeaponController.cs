@@ -20,6 +20,7 @@ public class SecondWeaponController : WeaponController
             {
                 isOverheated = false;
                 TopShooterApplication.topShooterModel.weaponModel.SetCanFire(true);
+                TopShooterApplication.topShooterController.gameplayUIController.OnWeaponCoolUIChange();
             }
         }
 
@@ -47,6 +48,7 @@ public class SecondWeaponController : WeaponController
         if (weaponHeat >= maxHeat)
         {
             isOverheated = true;
+            TopShooterApplication.topShooterController.gameplayUIController.OnWeaponHeatUIChange();
         }
 
         TopShooterApplication.topShooterModel.weaponModel.SetCanFire(false);
